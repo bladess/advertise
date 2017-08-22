@@ -1,8 +1,11 @@
 <?php
-//    $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
- //   $stmt=$db->query('SELECT title FROM categories');
- //   $results = $stmt->fetchAll();
-   
+    $first_name =$_POST["first_name"];
+    $last_name=$_POST["last_name"];
+    if(!empty($first_name) && !empty($last_name)){
+        $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
+        $query = "INSERT INTO users (first_name,last_name) values ('".$first_name."','".$last_name ."');";
+        $stmt=$db->query($query);
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +34,18 @@
     <header class="page-header">
         <h1 class="text-center">Welcome to our adverts website</h1>
     </header>
-    <section>
+    <section class="container">
+            <form method="POST" class="col-md-offset-4 col-md-4"action="index.php">
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input class="form-control" type="text" id="first_name" name="first_name"/>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input class="form-control" type="text" id="last_name" name="last_name"/>
+            </div>
+            <button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Add Advertiser</button>
+        </form>
     </section>
     <footer>
     </footer>

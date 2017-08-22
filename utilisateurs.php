@@ -29,10 +29,10 @@
         </div>
     </nav>
     <header class="page-header">
-        <h1 class="text-center">List of the advertisers</h1>
+        <h1 class="text-center">List of advertisers</h1>
     </header>
     <section class ="container">
-    <div class="col-md-offset-4 col-md-3">
+    <div class="col-md-offset-3 col-md-6">
         <table class="table table-bordered">
             <thead>
                 <tr>
