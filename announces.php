@@ -1,7 +1,14 @@
 <?php
-    $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
-    $str = "SELECT id_announces, title, price, description, last_name, first_name FROM announces ";
-    $str.="INNER JOIN users on announces.id_users = users.id_users";
+    $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
+    
+    
+    $str = "SELECT ann_oid, ann_titre, ann_prix, ann_description, uti_prenom, uti_nom,rub_label FROM ann_annonce ";
+    $str.="INNER JOIN uti_utilisateur on ann_annonce.uti_oid = uti_utilisateur.uti_oid ";
+    $str.="INNER JOIN rub_rubrique on ann_annonce.rub_oid=rub_rubrique.rub_oid";
+    if(!empty($_GET['name'])){
+        $str.= " WHERE ann_titre like '%". htmlspecialchars($_GET['name'])."%'";
+    }
+    
     $stmt=$db->query($str);
     $results = $stmt->fetchAll();
    
@@ -34,6 +41,21 @@
         <h1 class="text-center">List of adverts</h1>
     </header>
     <section class ="container">
+        <div class="row">
+            <form method="GET" class="col-md-offset-8 col-md-4 form-inline">
+                    <div class="form-group">
+                        <label for="name">Search by title</label>
+                        <input class="form-control" type="text" id="name" name="name"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type ="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+            </form>
+        </div>
+        <div class="row">
+            <hr class="col-md-offset-8 col-md-4 form-inline"></hr><!-- petit separateur-->
+        </div>
+    <div class="row">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -43,21 +65,24 @@
                     <th class="text-center">Price</th>
                     <th class="text-center">First Name</th>
                     <th class="text-center">Last Name</th>
+                    <th class="text-center">Category</th>
                 </tr>
             <tbody>
                 <?php foreach($results as $key=>$value):?>
             </thead>
                 <tr>
-                    <td class="text-center"><?= $value['id_announces'];?></td>
-                    <td class="text-center"><?= $value['title'];?></td>
-                    <td class="text-center"><?= $value['description'];?></td>
-                    <td class="text-center"><?= $value['price'];?></td>
-                    <td class="text-center"><?= $value['first_name'];?></td>
-                    <td class="text-center"><?= $value['last_name'];?></td>
+                    <td class="text-center"><?= $value['ann_oid'];?></td>
+                    <td class="text-center"><?= $value['ann_titre'];?></td>
+                    <td class="text-center"><?= $value['ann_description'];?></td>
+                    <td class="text-center"><?= $value['ann_prix'];?></td>
+                    <td class="text-center"><?= $value['uti_prenom'];?></td>
+                    <td class="text-center"><?= $value['uti_nom'];?></td>
+                    <td class="text-center"><?= $value['rub_label'];?></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>
         </table>
+    </div>
     </section>
     <footer>
     </footer>

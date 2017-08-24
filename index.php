@@ -1,9 +1,10 @@
 <?php
     $first_name =$_POST["first_name"];
     $last_name=$_POST["last_name"];
-    if(!empty($first_name) && !empty($last_name)){
-        $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
-        $query = "INSERT INTO users (first_name,last_name) values ('".$first_name."','".$last_name ."');";
+    $age=$_POST["age"];
+    if(!empty($age) && !empty($first_name) && !empty($last_name)){
+        $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
+        $query = "INSERT INTO uti_utilisateur (uti_prenom,uti_nom,uti_age) values ('".$first_name."','".$last_name ."',".$age .");";
         $stmt=$db->query($query);
     } 
 ?>
@@ -43,6 +44,10 @@
             <div class="form-group">
                 <label for="last_name">Last Name</label>
                 <input class="form-control" type="text" id="last_name" name="last_name"/>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input class="form-control" type="number" id="age" name="age"/>
             </div>
             <button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Add Advertiser</button>
         </form>

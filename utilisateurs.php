@@ -1,6 +1,6 @@
 <?php
-    $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
-    $stmt=$db->query('SELECT id_users,first_name,last_name FROM users');
+    $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
+    $stmt=$db->query('select uti_prenom,uti_nom,uti_age from uti_utilisateur ');
     $results = $stmt->fetchAll();
    
 ?>
@@ -29,24 +29,24 @@
         </div>
     </nav>
     <header class="page-header">
-        <h1 class="text-center">List of advertisers</h1>
+        <h1 class="text-center">List of  advertisers</h1>
     </header>
     <section class ="container">
     <div class="col-md-offset-3 col-md-6">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="text-center">#</th>
                     <th class="text-center">First Name</th>
                     <th class="text-center">Last Name</th>
+                    <th class="text-center">Age</th>
                 </tr>
             <tbody>
                 <?php foreach($results as $key=>$value):?>
             </thead>
                 <tr>
-                    <td class="text-center"><?= $value['id_users'];?></td>
-                    <td class="text-center"><?= $value['first_name'];?></td>
-                    <td class="text-center"><?= $value['last_name'];?></td>
+                    <td class="text-center"><?= $value['uti_prenom'];?></td>
+                    <td class="text-center"><?= $value['uti_nom'];?></td>
+                    <td class="text-center"><?= $value['uti_age'];?></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>

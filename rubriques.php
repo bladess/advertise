@@ -1,8 +1,10 @@
 <?php
-    $db = new PDO('mysql:host=localhost;dbname=annonce;charset=utf8mb4', 'root', 'admin');
-    $stmt=$db->query('SELECT title, id_categories FROM categories');
+    $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');    
+    $str="SELECT r1.rub_oid as id,r1.rub_label as lab, r2.rub_label as par ";
+    $str.="FROM rub_rubrique r1 ";
+    $str.="left outer join rub_rubrique r2 on r1.rub_oid_parent = r2.rub_oid";
+    $stmt=$db->query($str);
     $results = $stmt->fetchAll();
-   
 ?>
 
 <!DOCTYPE html>
@@ -32,19 +34,21 @@
         <h1 class="text-center">List of categories</h1>
     </header>
     <section class ="container">
-    <div class="col-md-offset-4 col-md-3">
+    <div class="col-md-offset-3 col-md-6">
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">Title</th>
+                    <th class="text-center">Parent</th>
                 </tr>
             <tbody>
                 <?php foreach($results as $key=>$value):?>
             </thead>
                 <tr>
-                    <td class="text-center"><?= $value['id_categories'];?></td>
-                    <td class="text-center"><?= $value['title'];?></td>
+                    <td class="text-center"><?= $value['id'];?></td>
+                    <td class="text-center"><?= $value['lab'];?></td>
+                    <td class="text-center"><?= $value['par'];?></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>
