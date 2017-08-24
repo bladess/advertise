@@ -42,7 +42,7 @@
     </header>
     <section class ="container">
         <div class="row">
-            <form method="GET" class="col-md-offset-8 col-md-4 form-inline">
+            <form method="GET" class="col-md-offset-4 col-md-4 form-inline">
                     <div class="form-group">
                         <label for="name">Search by title</label>
                         <input class="form-control" type="text" id="name" name="name"/>
@@ -53,7 +53,7 @@
             </form>
         </div>
         <div class="row">
-            <hr class="col-md-offset-8 col-md-4 form-inline"></hr><!-- petit separateur-->
+            <hr class="col-md-offset-4 col-md-4"></hr><!-- petit separateur-->
         </div>
     <div class="row">
         <table class="table table-bordered">
