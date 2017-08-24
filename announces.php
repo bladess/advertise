@@ -89,6 +89,5 @@
         Website made by Nassim Cheurfa - 2017
     </div>
     </footer>
-</span>
 </body>
 </html>
