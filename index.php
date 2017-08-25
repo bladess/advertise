@@ -5,7 +5,7 @@
     if(!empty($age) && !empty($first_name) && !empty($last_name)){
         $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
         $query = "INSERT INTO uti_utilisateur (uti_prenom,uti_nom,uti_age) values ";
-        $query.= sprintf("('%s','%s',%d)",$first_name,$last_name,$age);
+        $query.= sprintf("('%s','%s',%d)",htmlspecialchars($first_name),htmlspecialchars($last_name),htmlspecialchars($age));
         $stmt=$db->query($query);
     } 
 ?>
