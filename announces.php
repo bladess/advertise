@@ -4,9 +4,11 @@
     
     $str = "SELECT ann_oid, ann_titre, ann_prix, ann_description, uti_prenom, uti_nom,rub_label FROM ann_annonce ";
     $str.="INNER JOIN uti_utilisateur on ann_annonce.uti_oid = uti_utilisateur.uti_oid ";
-    $str.="INNER JOIN rub_rubrique on ann_annonce.rub_oid=rub_rubrique.rub_oid";
+    $str.="INNER JOIN rub_rubrique on ann_annonce.rub_oid=rub_rubrique.rub_oid ";
     if(!empty($_GET['name'])){
-        $str.= " WHERE ann_titre like '%". htmlspecialchars($_GET['name'])."%'";
+        $str.= "WHERE ann_titre like '%";
+        $str.=sprintf("%s",$_GET['name']);
+        $str.="%'";
     }
     
     $stmt=$db->query($str);
