@@ -36,6 +36,7 @@
                 <li><a href="utilisateurs.php">Advertisers</a><li>
                 <li><a href="rubriques.php">Categories</a><li>
                 <li class=active><a href="announces.php">Adverts</a><li>
+                <li><a href="ajout_user.php">Add User</a><li>
             </ul>
         </div>
     </nav>

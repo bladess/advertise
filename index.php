@@ -1,13 +1,5 @@
 <?php
-    $first_name =$_POST["first_name"];
-    $last_name=$_POST["last_name"];
-    $age=$_POST["age"];
-    if(!empty($age) && !empty($first_name) && !empty($last_name)){
-        $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
-        $query = "INSERT INTO uti_utilisateur (uti_prenom,uti_nom,uti_age) values ";
-        $query.= sprintf("('%s','%s',%d)",htmlspecialchars($first_name),htmlspecialchars($last_name),htmlspecialchars($age));
-        $stmt=$db->query($query);
-    } 
+    
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +22,7 @@
                 <li><a href="utilisateurs.php">Advertisers</a><li>
                 <li><a href="rubriques.php">Categories</a><li>
                 <li><a href="announces.php">Adverts</a><li>
+                <li><a href="ajout_user.php">Add User</a><li>
             </ul>
         </div>
     </nav>
@@ -37,21 +30,7 @@
         <h1 class="text-center">Welcome to our adverts website</h1>
     </header>
     <section class="container">
-            <form method="POST" class="col-md-offset-4 col-md-4"action="index.php">
-            <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input class="form-control" type="text" id="first_name" name="first_name"/>
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input class="form-control" type="text" id="last_name" name="last_name"/>
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input class="form-control" type="number" id="age" name="age"/>
-            </div>
-            <button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Add Advertiser</button>
-        </form>
+      
     </section>
     <footer>
     <div class="container">
