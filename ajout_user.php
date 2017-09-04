@@ -7,9 +7,10 @@
      $mail = $_POST["email"];
      $passconf = $_POST["passwdconf"];
      if(!empty($age) && !empty($first_name) && !empty($last_name) && !empty($mail) && !empty($pass) && !empty($passconf)){
-       if(strlen($pass)>8){
+       if(strlen($pass)>7){
         if($pass == $passconf){
-         $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
+            var_dump($_POST);
+            $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
         }
         else{
             $error = "Pass and Pass confirmation are differents";

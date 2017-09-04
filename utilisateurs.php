@@ -1,6 +1,6 @@
 <?php
     $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
-    $stmt=$db->query('select uti_prenom,uti_nom,uti_age, uti_pseudo, uti_email from uti_utilisateur ');
+    $stmt=$db->query('select uti_prenom,uti_nom,uti_age, uti_pseudo, uti_email, uti_password from uti_utilisateur ');
     $results = $stmt->fetchAll();
    
 ?>
@@ -42,6 +42,7 @@
                     <th class="text-center">Pseudo</th>
                     <th class="text-center">Age</th>
                     <th class="text-center">Email</th>
+                    <th class="text-center">Pass</th>
                 </tr>
             <tbody>
                 <?php foreach($results as $key=>$value):?>
@@ -52,6 +53,7 @@
                     <td class="text-center"><?= $value['uti_pseudo'];?></td>
                     <td class="text-center"><?= $value['uti_age'];?></td>
                     <td class="text-center"><?= $value['uti_email'];?></td>
+                    <td class="text-center"><?= $value['uti_password'];?></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>
