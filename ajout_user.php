@@ -1,13 +1,26 @@
 <?php
+     $error= "Succes";
      $first_name =$_POST["first_name"];
      $last_name=$_POST["last_name"];
      $age=$_POST["age"];
      $pass = $_POST["passwd"];
      $mail = $_POST["email"];
      $passconf = $_POST["passwdconf"];
-     if(!empty($age) && !empty($first_name) && !empty($last_name) ){
+     if(!empty($age) && !empty($first_name) && !empty($last_name) && !empty($mail) && !empty($pass) && !empty($passconf)){
+       if(strlen($pass)>8){
+        if($pass == $passconf){
          $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
- 
+        }
+        else{
+            $error = "Pass and Pass confirmation are differents";
+        }
+       }
+       else{
+           $error = "Pass too short";
+       }
+     }
+     else{
+        $error ="Empty field";
      }
 ?>
 
@@ -36,7 +49,8 @@
         </div>
     </nav>
     <header class="page-header">
-        <h1 class="text-center">Welcome to our adverts website</h1>
+        <h1 class="text-center">New User</h1>
+        <?= $error ?>
     </header>
     <section class="container">
             <form method="POST" class="col-md-offset-4 col-md-4" action="ajout_user.php">
@@ -58,14 +72,16 @@
             </div>
             <div class="form-group">
                 <label for="passwd">Password</label>
-                <input class="form-control" type="text" id="passwd" name="passwd"/>
+                <input class="form-control" type="password" id="passwd" name="passwd"/>
             </div>
             <div class="form-group">
                 <label for="passwdconf">Password confirmation   </label>
-                <input class="form-control" type="text" id="passwdconf" name="passwdconf"/>
+                <input class="form-control" type="password  " id="passwdconf" name="passwdconf"/>
             </div>
             <button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Add Advertiser</button>
+            
         </form>
+        
     </section>
     <footer>
     <div class="container">
