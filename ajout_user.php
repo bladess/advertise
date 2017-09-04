@@ -22,7 +22,7 @@
             exit();
             }
             else{
-                $error =" mail or pseudo used";
+                $error = "mail or pseudo used";
             }
 
         }
