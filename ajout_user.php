@@ -1,5 +1,6 @@
 <?php
-     $error= "Succes";
+    if(!empty($_POST)){
+    $error= "Succes";
      $first_name =htmlspecialchars($_POST["first_name"]);
      $last_name=htmlspecialchars($_POST["last_name"]);
      $age=htmlspecialchars($_POST["age"]);
@@ -7,12 +8,22 @@
      $mail = htmlspecialchars($_POST["email"]);
      $passconf = htmlspecialchars($_POST["passwdconf"]); 
      $pseudo = htmlspecialchars($_POST["pseudo"]);
-    if(isset($_POST)&&strlen($pass)>7){
+    if(strlen($pass)>7){
         if($pass == $passconf){
             $db = new PDO('mysql:host=localhost;dbname=annonce_immo;charset=utf8mb4', 'root', 'admin');
+            $req = sprintf("select * from uti_utilisateur where uti_email = '%s' or uti_pseudo = '%s'",$mail,$pseudo);
+            $stmt = $db->query($req);
+            if(empty($stmt->fetchAll())){
+            $pass=password_hash($pass,PASSWORD_DEFAULT);    
             $insert = "insert into uti_utilisateur (uti_prenom, uti_nom, uti_password, uti_pseudo, uti_email, uti_age) values ";
             $insert.= sprintf("('%s','%s','%s','%s','%s','%d');",$first_name,$last_name,$pass,$pseudo,$mail,$age);
-            $stm = $db->query($insert); 
+            $stm = $db->query($insert);
+            header('Location: index.php');
+            exit();
+            }
+            else{
+                $error =" mail or pseudo used";
+            }
 
         }
             
@@ -23,6 +34,7 @@
        else{
            $error = "Pass too short";
        }
+    }
      
 ?>
 
@@ -74,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input class="form-control" type="email" id="email" name="email"required/>
+                    <input class="form-control" type="email" id="email" name="email"required/>
             </div>
             <div class="form-group">
                 <label for="passwd">Password</label>

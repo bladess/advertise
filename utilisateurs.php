@@ -33,7 +33,7 @@
         <h1 class="text-center">List of  advertisers</h1>
     </header>
     <section class ="container">
-    <div class="col-md-offset-2 col-md-8">
+    <div >
         <table class="table table-bordered">
             <thead>
                 <tr>

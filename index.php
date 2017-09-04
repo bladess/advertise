@@ -30,6 +30,8 @@
         <h1 class="text-center">Welcome to our adverts website</h1>
     </header>
     <section class="container">
+    <img src="img/OM12M00.jpg" alt="Home img" class="img-circle img-responsive center-block">
+    <a href='http://fr.freepik.com/vecteurs-libre/immobilier-design-fond_1062206.htm'>Designed by Freepik</a>
       
     </section>
     <footer>
